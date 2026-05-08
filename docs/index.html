@@ -365,6 +365,18 @@
             .md-highlights { flex-direction:column; }
             .inquiry-form { padding:24px; }
         }
+        .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.nav-logo-img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
     </style>
 </head>
 <body>
@@ -383,15 +395,21 @@
     </div>
 
     <!-- 1. NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#home" class="nav-logo">
-                <div class="nav-logo-icon">TE</div>
-                <div class="nav-logo-text">
-                    <span class="brand-name">Tejas Energy</span>
-                    <span class="brand-tagline">& Infra Resources</span>
-                </div>
-            </a>
+ <nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="#home" class="nav-logo">
+            
+            <!-- Logo Image -->
+            <img src="https://i.ibb.co/zh8Mv9pg/tejas.png" 
+                 alt="Tejas Energy Logo" 
+                 class="nav-logo-img">
+
+            <div class="nav-logo-text">
+                <span class="brand-name">Tejas Energy</span>
+                <span class="brand-tagline">& Infra Resources</span>
+            </div>
+        </a>
+            
             <div class="nav-menu" id="navMenu">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
