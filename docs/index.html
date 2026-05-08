@@ -378,8 +378,8 @@
     object-fit: contain;
 }
 
-        /* =========================
-   GALLERY SECTION
+      /* =========================
+   PREMIUM GALLERY SECTION
 ========================= */
 
 .gallery-section{
@@ -387,32 +387,6 @@
     background:#081120;
     position:relative;
     overflow:hidden;
-}
-
-.section-header{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.section-subtitle{
-    color:#4fa3ff;
-    font-size:18px;
-    font-weight:600;
-    letter-spacing:1px;
-}
-
-.section-title{
-    color:#fff;
-    font-size:48px;
-    font-weight:700;
-    margin-top:10px;
-}
-
-.section-description{
-    color:#bfc9d4;
-    max-width:750px;
-    margin:15px auto 0;
-    line-height:1.8;
 }
 
 .gallery-slider{
@@ -424,12 +398,17 @@
     box-shadow:0 20px 50px rgba(0,0,0,0.5);
 }
 
-.gallery-slides{
+.gallery-slide{
     display:none;
     width:100%;
+    animation:galleryFade 1s ease;
 }
 
-.gallery-slides img{
+.gallery-slide.active-slide{
+    display:block;
+}
+
+.gallery-slide img{
     width:100%;
     height:650px;
     object-fit:cover;
@@ -437,23 +416,23 @@
     border-radius:25px;
 }
 
-.active{
-    display:block;
-}
+/* Fade Animation */
 
-.fade{
-    animation:fadeEffect 1s;
-}
-
-@keyframes fadeEffect{
-    from{opacity:0.4;}
-    to{opacity:1;}
+@keyframes galleryFade{
+    from{
+        opacity:0.4;
+        transform:scale(1.02);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 /* Buttons */
 
-.prev,
-.next{
+.gallery-prev,
+.gallery-next{
     cursor:pointer;
     position:absolute;
     top:50%;
@@ -467,22 +446,49 @@
     font-size:24px;
     transition:0.3s;
     z-index:10;
+    backdrop-filter:blur(5px);
 }
 
-.prev:hover,
-.next:hover{
+.gallery-prev:hover,
+.gallery-next:hover{
     background:#4fa3ff;
 }
 
-.prev{
+.gallery-prev{
     left:20px;
 }
 
-.next{
+.gallery-next{
     right:20px;
 }
 
-/* MOBILE */
+/* Dots */
+
+.gallery-dots{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    z-index:11;
+}
+
+.gallery-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.5);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.gallery-dot.active-dot{
+    background:#4fa3ff;
+    transform:scale(1.2);
+}
+
+/* Mobile */
 
 @media(max-width:768px){
 
@@ -490,16 +496,12 @@
         padding:70px 0;
     }
 
-    .section-title{
-        font-size:34px;
-    }
-
-    .gallery-slides img{
+    .gallery-slide img{
         height:320px;
     }
 
-    .prev,
-    .next{
+    .gallery-prev,
+    .gallery-next{
         width:45px;
         height:45px;
         font-size:20px;
@@ -864,46 +866,63 @@
             </div>
         </div>
     </section>
-<!-- GALLERY SECTION START -->
+<!-- GALLERY SECTION -->
 <section class="gallery-section" id="gallery">
+
     <div class="container">
 
         <div class="section-header">
-            <span class="section-subtitle">Our Projects</span>
-            <h2 class="section-title">Project Gallery</h2>
-            <p class="section-description">
-                Delivering excellence across Oil & Gas, Infrastructure,
-                Industrial Engineering and Heavy Lifting Projects.
+            <span class="section-badge">
+                <i class="fas fa-image"></i> Gallery
+            </span>
+
+            <h2 class="section-title">
+                Our <span class="highlight">Projects</span>
+            </h2>
+
+            <div class="gold-divider"></div>
+
+            <p class="section-subtitle">
+                Explore our infrastructure, oil & gas and industrial projects.
             </p>
         </div>
 
         <div class="gallery-slider">
 
-            <div class="gallery-slides fade active">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop" alt="Solar Project">
+            <div class="gallery-slide active-slide">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop" alt="">
             </div>
 
-            <div class="gallery-slides fade">
-                <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1600&auto=format&fit=crop" alt="Infrastructure Project">
+            <div class="gallery-slide">
+                <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1600&auto=format&fit=crop" alt="">
             </div>
 
-            <div class="gallery-slides fade">
-                <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?q=80&w=1600&auto=format&fit=crop" alt="Industrial Setup">
+            <div class="gallery-slide">
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1600&auto=format&fit=crop" alt="">
             </div>
 
-            <div class="gallery-slides fade">
-                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1600&auto=format&fit=crop" alt="Construction Site">
+            <div class="gallery-slide">
+                <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?q=80&w=1600&auto=format&fit=crop" alt="">
             </div>
 
-            <!-- Navigation Buttons -->
-            <button class="prev">&#10094;</button>
-            <button class="next">&#10095;</button>
+            <!-- Buttons -->
+            <button class="gallery-prev">&#10094;</button>
+            <button class="gallery-next">&#10095;</button>
+
+            <!-- Dots -->
+            <div class="gallery-dots">
+                <span class="gallery-dot active-dot"></span>
+                <span class="gallery-dot"></span>
+                <span class="gallery-dot"></span>
+                <span class="gallery-dot"></span>
+            </div>
 
         </div>
 
     </div>
+
 </section>
-<!-- GALLERY SECTION END -->    <!-- 8. TESTIMONIALS -->
+    <!-- 8. TESTIMONIALS -->
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-header animate-on-scroll">
@@ -1245,6 +1264,59 @@
                 }
             });
         });
+        const gallerySlides = document.querySelectorAll(".gallery-slide");
+const galleryDots = document.querySelectorAll(".gallery-dot");
+
+let galleryIndex = 0;
+
+function showGallerySlide(index){
+
+    gallerySlides.forEach((slide)=>{
+        slide.classList.remove("active-slide");
+    });
+
+    galleryDots.forEach((dot)=>{
+        dot.classList.remove("active-dot");
+    });
+
+    if(index >= gallerySlides.length){
+        galleryIndex = 0;
+    }
+
+    if(index < 0){
+        galleryIndex = gallerySlides.length - 1;
+    }
+
+    gallerySlides[galleryIndex].classList.add("active-slide");
+    galleryDots[galleryIndex].classList.add("active-dot");
+}
+
+function nextGallery(){
+    galleryIndex++;
+    showGallerySlide(galleryIndex);
+}
+
+function prevGallery(){
+    galleryIndex--;
+    showGallerySlide(galleryIndex);
+}
+
+document.querySelector(".gallery-next").addEventListener("click", nextGallery);
+
+document.querySelector(".gallery-prev").addEventListener("click", prevGallery);
+
+galleryDots.forEach((dot,index)=>{
+    dot.addEventListener("click", ()=>{
+        galleryIndex = index;
+        showGallerySlide(galleryIndex);
+    });
+});
+
+/* AUTO SLIDE */
+
+setInterval(()=>{
+    nextGallery();
+},4000);
     </script>
 </body>
 </html>
